@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="favicon.ico" />
+    <meta name="theme-color" content="#1d1d1d" />
+    <meta name="description" content="<%= htmlWebpackPlugin.options.templateParameters.title %>" />
+    <meta name="version" content="<%= htmlWebpackPlugin.options.templateParameters.version %>" />
+    <link rel="apple-touch-icon" href="logo192.png" />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="HandheldFriendly" content="true">
+    <meta name="MobileOptimized" content="320">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="mssmarttagspreventparsing" content="true">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="browsermode" content="application">
+    <meta name="full-screen" content="yes">
+    <meta name="x5-fullscreen" content="true" />
+    <meta name="google" content="notranslate" />
+    <title>
+        <%= htmlWebpackPlugin.options.templateParameters.title %>
+    </title>
+    <meta http-equiv="imagetoolbar" content="no">
+    <meta http-equiv="X-UA-Compatible" content="chrome=0">
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, minimal-ui, viewport-fit=cover">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        html {
+            font-size: 10px;
+        }
+
+        body {
+            font-family: 'Inria Sans';
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            color: #424041;
+            background: #E0E0E0;
+            overflow: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        #lt {
+            font-size: 24px;
+            font-weight: bold;
+            position: absolute;
+            z-index: 9999999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100vw;
+            height: 100vh;
+            background: #424041;
+            opacity: 1;
+            transition: opacity 250ms;
+            animation: 1.5s linear infinite running colors;
+        }
+
+        @keyframes colors {
+            0% {
+                color: #E0E0E0;
+            }
+
+            40% {
+                color: #a88a1d;
+            }
+
+            60% {
+                color: #a88a1d;
+            }
+
+            100% {
+                color: #E0E0E0;
+            }
+        }
+    </style>
+</head>
+
+<body translate="no" class="notranslate">
+    <div id="lt">LOADING...</div>
+</body>
+
+</html>

@@ -1,29 +1,102 @@
-# README #
+# Movies DB
 
-This README would normally document whatever steps are necessary to get your application up and running.
+React.js application with a paginated list of movies. It contains page with detailed information about the selected movie (descriptoin, poster etc). Users can search movies by name.
+Movies DB API <https://developer.themoviedb.org/docs/getting-started>
 
-### What is this repository for? ###
+[Live DEMO](https://oleggnet.dev/cv/moviesdb/)
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+## Installation
 
-### How do I get set up? ###
+1. Requirements.
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+    * [`node 21` or greater must be installed](https://nodejs.org/en/download)
 
-### Contribution guidelines ###
+    * [`git 2` or newer must be installed](https://git-scm.com/downloads)
 
-* Writing tests
-* Code review
-* Other guidelines
+1. Install packages and setup.
 
-### Who do I talk to? ###
+    ```sh
+    npm i
+    ```
 
-* Repo owner or admin
-* Other community or team contact
+1. VS Code recommended settings, add to `.vscode/settings.json`
+
+    ```json
+    {
+        "typescript.tsdk": "./node_modules/typescript/lib",
+        "editor.codeActionsOnSave": {
+            "source.fixAll": "explicit"
+        },
+        "eslint.validate": [
+            "typescript"
+        ]
+    }
+    ```
+
+## Development
+
+Start development run following command and check browser <http://localhost:8888/>
+
+```sh
+npm run start
+```
+
+Fix all (autofixamble) linter issues if do not fixed automatically
+
+```sh
+npm run lint
+```
+
+Fix linter issues in modified files only
+
+```sh
+npm run lint:diff
+```
+
+## Production build
+
+```sh
+npm run dist:prod
+```
+
+Check bundle analyzer report
+
+```sh
+npm run bundle-report
+```
+
+## Project description
+
+### Folder structure
+
+**public** ⸺ public access files with additional web information;
+
+**scripts** ⸺ webpack configs and js-scripts;
+
+**src** ⸺ application structure;
+
+**templates** ⸺ HTML templates with simple loading screen;
+
+**typings** ⸺ application type declarations;
+
+### Application structure
+
+**loader** ⸺ load dependencies/settings before application render showing "loading screen";
+
+**layout** ⸺ particular layout for desktop/phone/tablet and run application;
+
+**deviceType** ⸺ device type detection and constants;
+
+**entity** ⸺ tyni react components with properties passing inside, can't include other components;
+
+**component** ⸺ react components with selectors/dispatch, can contain other components;
+
+**store** ⸺ application redux store;
+
+**utils** ⸺ utilities;
+
+**console** ⸺ default console wrappered functions;
+
+**error** ⸺ application error classes;
+
+*Application entry point:* index.js -> loader -> layout -> particular layout desktop/mobile/tablet

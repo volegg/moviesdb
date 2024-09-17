@@ -5,6 +5,7 @@
 
 # Node artifact files
 node_modules/
+build/
 dist/
 
 # Compiled Java class files
@@ -21,7 +22,6 @@ dist/
 
 # Maven
 target/
-dist/
 
 # JetBrains IDE
 .idea/
@@ -48,3 +48,5 @@ Thumbs.db
 *.mov
 *.wmv
 
+.vscode
+.idea
