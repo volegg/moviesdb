@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Entities } from "src/entity/entities";
+import { Entities } from "src/entity/EntitiesDev/entities";
 
 import { createApp } from "./createApp";
 import style from "./style.pcss";
