@@ -1,0 +1,3 @@
+type QueryParams = {
+    devMode: boolean;
+};

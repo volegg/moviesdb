@@ -1,6 +1,6 @@
 # Movies DB
 
-React.js application with a paginated list of movies. It contains page with detailed information about the selected movie (descriptoin, poster etc). Users can search movies by name.
+React.js application with a paginated list of movies. It contains page with detailed information about the selected movie (description, poster etc). Users can search movies by name.
 Movies DB API <https://developer.themoviedb.org/docs/getting-started>
 
 [Live DEMO](https://oleggnet.dev/cv/moviesdb/)

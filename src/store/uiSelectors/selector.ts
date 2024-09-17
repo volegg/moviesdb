@@ -1,6 +1,6 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-import { State } from "src/store/store";
+import type { State } from "../store";
 
 function getState(state: State) {
     return state.uiReducer;

@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import { Search } from "src/component/Search/Search";
+import { Entities } from "src/entity/entities";
 
 import { createApp } from "./createApp";
 import style from "./style.pcss";
@@ -12,7 +12,7 @@ export function render(transport: ITransport) {
 function Layout() {
     return (
         <div className={style.app}>
-            <Search />
+            <Entities />
         </div>
     );
 }
