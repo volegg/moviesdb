@@ -7,6 +7,7 @@ export const api = {
     searchMovie: createHttp("/search/movie"),
     genreMovieList: createHttp("/genre/movie/list"),
     moviePopular: createHttp("/movie/popular"),
+    topRated: createHttp("/movie/top_rated"),
 };
 
 function createHttp(path: string, method = "GET") {

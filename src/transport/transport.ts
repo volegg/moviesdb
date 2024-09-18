@@ -2,6 +2,9 @@ import { api } from "./api";
 import { ApiEndpoint } from "./const";
 
 export class Transport implements ITransport {
+    topRated(): Promise<void> {
+        throw new Error("Method not implemented.");
+    }
     private _responseHandler: ApiCallback = () => {
         throw new Error("Transport Error. Set response handler before call. See Tranport.setResponseHandler");
     };
@@ -17,16 +20,20 @@ export class Transport implements ITransport {
         this._errorHandler = callback;
     }
 
-    searchMovieApi(name: string) {
-        return this.wrapper(ApiEndpoint.searchMovie, api.searchMovie({ query: name }));
+    searchMovieApi(params: SearchMovieParams) {
+        return this.wrapper(ApiEndpoint.searchMovie, api.searchMovie(params));
+    }
+
+    moviePopularApi(page: number) {
+        return this.wrapper(ApiEndpoint.moviePopular, api.moviePopular({ page }));
     }
 
     genreListApi() {
         return this.wrapper(ApiEndpoint.genereMovieList, api.genreMovieList());
     }
 
-    moviePopular(page = 1) {
-        return this.wrapper(ApiEndpoint.moviePopular, api.moviePopular({ page }));
+    topRatedApi(page: number) {
+        return this.wrapper(ApiEndpoint.topRated, api.topRated({ page }));
     }
 
     private wrapper(endpoint: ApiEndpoints, deferred: Promise<ApiPayload>) {

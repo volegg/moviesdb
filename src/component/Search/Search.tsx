@@ -15,10 +15,10 @@ export function Search() {
     );
 
     function onClick() {
-        getTransport().searchMovieApi("test");
+        getTransport().searchMovieApi({ query: "terminator", page: 1 });
     }
 
     function onEnter(name: string) {
-        getTransport().searchMovieApi(name);
+        getTransport().searchMovieApi({ query: name, page: 1 });
     }
 }

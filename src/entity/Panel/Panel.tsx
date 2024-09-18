@@ -10,10 +10,8 @@ type PanelProps = {
 export function Panel({ title, children }: PanelProps) {
     return (
         <div className={style.root}>
-            <div className={style.root2nd}>
-                {title ? <div className={style.title}>{title}</div> : null}
-                {children}
-            </div>
+            {title ? <div className={style.title}>{title}</div> : null}
+            {children}
         </div>
     );
 }

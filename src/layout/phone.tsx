@@ -1,18 +1,3 @@
-import * as React from "react";
+import { render as desktopRender } from "./desktop";
 
-import { Search } from "src/component/Search/Search";
-
-import { createApp } from "./createApp";
-import style from "./style.pcss";
-
-export function render(transport: ITransport) {
-    createApp(<Layout />, transport);
-}
-
-function Layout() {
-    return (
-        <div className={style.app}>
-            <Search />
-        </div>
-    );
-}
+export const render = desktopRender;

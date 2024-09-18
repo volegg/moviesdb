@@ -1,9 +1,13 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 import { moviePopularReducer } from "./reducers/moviePopular";
+import { movieSearchReducer } from "./reducers/movieSearch";
+import { movieTopRatedReducer } from "./reducers/movieTopRated";
 
 const reducer = combineReducers({
     moviePopularReducer,
+    movieSearchReducer,
+    movieTopRatedReducer,
 });
 
 export function setupStore() {

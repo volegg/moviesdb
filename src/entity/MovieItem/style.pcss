@@ -1,0 +1,42 @@
+.root {
+    position: relative;
+    font-size: 0.8em;
+    display: grid;
+    grid-template-columns: 3em auto 5em 6em 15em 1em;
+    column-gap: 0.25em;
+    align-items: center;
+    border-radius: 1em;
+    padding: 0.5em 0.5em;
+    background-color: #ffffff66;
+    box-shadow: 0 0 1em #ffffffbb;
+    transition: background-color 500ms;
+
+    & div:nth-child(2) {
+        text-align: left;
+    }
+
+    & div:nth-child(3), 
+    & div:nth-child(4),
+    & div:nth-child(6) {
+        text-align: center;
+    }
+
+    & div:nth-child(5) {
+        text-align: right;
+    }
+
+    &:hover {
+        cursor: pointer;
+        background-color: #ffffffff;
+    }
+}
+
+.rating {
+    width: 4em;
+}
+
+.poster {
+    background-size: cover;
+    height: 3em;
+    margin-right: 0.5em;
+}

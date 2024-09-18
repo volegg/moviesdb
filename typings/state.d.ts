@@ -1,12 +1,14 @@
-type MovieOptionState = {
-    genre?: MovieGenre;
-};
-
 type MoviePopularState = {
     pending: boolean;
     list: MoviePopular[];
 };
 
-type UIState = {
-    layoutName: string;
+type MovieTopRatedState = MoviePopularState;
+
+type MovieSearchState = {
+    page: number;
+    totalPages: number;
+    totalMovies: number;
+    pending: boolean;
+    list: MovieSearch[];
 };

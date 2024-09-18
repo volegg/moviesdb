@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 
 import { fetchMoviePopularAction } from "src/store/actions/moviePopularAction";
+import { fetchMovieTopRatedAction } from "src/store/actions/movieTopRatedAction";
 import { createErrorHandler } from "src/store/errorHandler";
 import { createResponseHandler } from "src/store/responseHandler";
 import { setupStore } from "src/store/store";
@@ -44,4 +45,5 @@ export function createApp(Layout: JSX.Element, transport: ITransport) {
     }
 
     store.dispatch(fetchMoviePopularAction(1));
+    store.dispatch(fetchMovieTopRatedAction(1));
 }

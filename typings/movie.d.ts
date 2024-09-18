@@ -1,10 +1,13 @@
-type MovieGenre = {
-    id: number;
-    name: string;
-};
-
 type MoviePopular = {
+    rating: number;
     title: string;
     image: string;
-    year: number;
+    date: string;
+};
+
+type MovieTopRated = MoviePopular;
+
+type MovieSearch = MoviePopular & {
+    lang: string;
+    genreIds: number[];
 };

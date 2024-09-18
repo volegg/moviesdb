@@ -24,26 +24,26 @@ export function loader() {
 function loadLayout() {
     let deferred;
 
-    if (queryParam.devMode) {
-        deferred = import(/* webpackChunkName: "devMode" */ "src/layout/devMode");
-    } else {
-        switch (true) {
-            case isPhone:
-                deferred = import(/* webpackChunkName: "phone" */ "src/layout/phone");
-                break;
-
-            case isTablet:
-                deferred = import(/* webpackChunkName: "tablet" */ "src/layout/tablet");
-                break;
-
-            default:
-                deferred = import(/* webpackChunkName: "desktop" */ "src/layout/desktop");
+    if (ENV.DEV) {
+        if (queryParam.devMode) {
+            return import(/* webpackChunkName: "devMode" */ "src/layout/devMode");
         }
     }
 
-    return deferred.then((layout) => {
-        return Promise.resolve(layout);
-    });
+    switch (true) {
+        case isPhone:
+            deferred = import(/* webpackChunkName: "phone" */ "src/layout/phone");
+            break;
+
+        case isTablet:
+            deferred = import(/* webpackChunkName: "tablet" */ "src/layout/tablet");
+            break;
+
+        default:
+            deferred = import(/* webpackChunkName: "desktop" */ "src/layout/desktop");
+    }
+
+    return deferred;
 }
 
 function loadTransport() {
