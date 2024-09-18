@@ -7,6 +7,7 @@ import { consoleWarn } from "src/console/warn";
 import { Button } from "../Button/Button";
 import { InputBox } from "../InputBox/InputBox";
 import { Panel } from "../Panel/Panel";
+import { Poster } from "../Poster/Poster";
 import { SearchBox } from "../SearchBox/SearchBox";
 
 import style from "./style.pcss";
@@ -33,6 +34,10 @@ export function Entities() {
                         <Button onClick={onClick}>Search</Button>
                     </div>
                 </Panel>
+            </div>
+            <hr></hr>
+            <div>
+                <Poster title="movie" year={2024} image="" />
             </div>
         </div>
     );

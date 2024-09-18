@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { MoviePopular } from "src/component/MoviePopular/MoviePopular";
 import { Search } from "src/component/Search/Search";
 
 import { createApp } from "./createApp";
@@ -13,6 +14,7 @@ function Layout() {
     return (
         <div className={style.app}>
             <Search />
+            <MoviePopular />
         </div>
     );
 }

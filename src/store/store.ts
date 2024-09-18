@@ -1,9 +1,9 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
-import { uiReducer } from "./reducers/ui";
+import { moviePopularReducer } from "./reducers/moviePopular";
 
 const reducer = combineReducers({
-    uiReducer,
+    moviePopularReducer,
 });
 
 export function setupStore() {

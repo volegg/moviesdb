@@ -6,32 +6,39 @@ export class Transport implements ITransport {
         throw new Error("Transport Error. Set response handler before call. See Tranport.setResponseHandler");
     };
 
-    init() {
-        return true;
-    }
+    private _errorHandler: ApiErrorCallback = () => {
+        throw new Error("Transport Error. Set error handler before call. See Tranport.setErrorHandler");
+    };
 
-    setResponseHandler(rh: ApiCallback) {
-        this._responseHandler = rh;
+    setResponseHandler(callback: ApiCallback) {
+        this._responseHandler = callback;
+    }
+    setErrorHandler(callback: ApiErrorCallback) {
+        this._errorHandler = callback;
     }
 
     searchMovieApi(name: string) {
-        this.wrapper(ApiEndpoint.searchMovie, api.searchMovie({ query: name }));
+        return this.wrapper(ApiEndpoint.searchMovie, api.searchMovie({ query: name }));
     }
 
     genreListApi() {
-        this.wrapper(ApiEndpoint.genereMovieList, api.genreMovieList());
+        return this.wrapper(ApiEndpoint.genereMovieList, api.genreMovieList());
+    }
+
+    moviePopular(page = 1) {
+        return this.wrapper(ApiEndpoint.moviePopular, api.moviePopular({ page }));
     }
 
     private wrapper(endpoint: ApiEndpoints, deferred: Promise<ApiPayload>) {
-        deferred
+        return deferred
             .then((payload) => {
-                this._responseHandler(null, {
+                this._responseHandler({
                     type: endpoint,
                     payload,
                 });
             })
             .catch((ex) => {
-                this._responseHandler(ex, { type: endpoint, payload: "error" });
+                this._errorHandler(ex, endpoint);
             });
     }
 }

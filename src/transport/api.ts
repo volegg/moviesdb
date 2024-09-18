@@ -6,6 +6,7 @@ const baseUri = "https://api.themoviedb.org/3";
 export const api = {
     searchMovie: createHttp("/search/movie"),
     genreMovieList: createHttp("/genre/movie/list"),
+    moviePopular: createHttp("/movie/popular"),
 };
 
 function createHttp(path: string, method = "GET") {

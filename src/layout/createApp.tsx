@@ -2,6 +2,8 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 
+import { fetchMoviePopularAction } from "src/store/actions/moviePopularAction";
+import { createErrorHandler } from "src/store/errorHandler";
 import { createResponseHandler } from "src/store/responseHandler";
 import { setupStore } from "src/store/store";
 import { setTransportInstance } from "src/store/transport";
@@ -15,9 +17,8 @@ export function createApp(Layout: JSX.Element, transport: ITransport) {
     const store = setupStore();
 
     transport.setResponseHandler(createResponseHandler(store.getState, store.dispatch));
+    transport.setErrorHandler(createErrorHandler());
     setTransportInstance(transport);
-
-    transport.genreListApi();
 
     const root = createRoot(rootNode);
 
@@ -41,4 +42,6 @@ export function createApp(Layout: JSX.Element, transport: ITransport) {
             loadScreenNode.remove();
         }, duration + 10);
     }
+
+    store.dispatch(fetchMoviePopularAction(1));
 }
