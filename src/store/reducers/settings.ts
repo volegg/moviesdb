@@ -1,12 +1,13 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 
-import { PageSize, View } from "src/const/pagination";
+import { PageSize, SortPerPage, View } from "src/const/pagination";
 
 function getInitialState(): SettingsState {
     return {
         pageSize: PageSize.ten,
         view: View.list,
+        sortPerPage: 0,
     };
 }
 
@@ -22,6 +23,9 @@ export const settingsSlice = createSlice({
         },
         setView(state, { payload }: PayloadAction<View>) {
             state.view = payload;
+        },
+        setSortPerPage(staet, { payload }: PayloadAction<SortPerPage>) {
+            staet.sortPerPage = payload;
         },
     },
 });

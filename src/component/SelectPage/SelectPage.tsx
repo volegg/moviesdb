@@ -66,7 +66,7 @@ export function SelectPage() {
     }
 
     function doSearch(page: number) {
-        if (moviesPending) {
+        if (moviesPending || page < 1 || page > totalPages) {
             return;
         }
 

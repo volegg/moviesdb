@@ -13,3 +13,7 @@ export const selectPageSize = createSelector(getState, (state) => {
 export const selectView = createSelector(getState, (state) => {
     return state.view;
 });
+
+export const selectSortPerPage = createSelector(getState, (state) => {
+    return state.sortPerPage;
+});

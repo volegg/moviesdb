@@ -1,4 +1,4 @@
-import { PageSize, View } from "src/const/pagination";
+import { PageSize, SortPerPage, View } from "src/const/pagination";
 
 const defaultParams: QueryParams = {
     devMode: 0,
@@ -6,6 +6,7 @@ const defaultParams: QueryParams = {
     title: "",
     view: View.list,
     pageSize: PageSize.ten,
+    sort: SortPerPage.none,
 };
 
 export const queryParam: Readonly<QueryParams> = ((queryString) => {
@@ -20,6 +21,9 @@ export const queryParam: Readonly<QueryParams> = ((queryString) => {
     });
     assignNumber(defaultParams, "view", (x) => {
         return [1, 2].includes(x);
+    });
+    assignNumber(defaultParams, "sort", (x) => {
+        return [0, 1, 2].includes(x);
     });
 
     const title = (urlParams.get("title") || "").trim().replace(/\s+/g, " ");

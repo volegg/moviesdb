@@ -1,11 +1,16 @@
 import { createSelector } from "@reduxjs/toolkit";
 
 import { MovieDB } from "src/const/moviedb";
+import { SortPerPage } from "src/const/pagination";
 
 import { selectSearchMovies, selectTotalMovies, selectUserPage } from "../selectors/searchMovies";
-import { selectPageSize } from "../selectors/settings";
+import { selectPageSize, selectSortPerPage } from "../selectors/settings";
 
 export const selectTotalPages = createSelector(selectPageSize, selectTotalMovies, (pageSize, totalMovies) => {
+    if (totalMovies === 0) {
+        return 0;
+    }
+
     return ((totalMovies / pageSize) >> 0) + 1;
 });
 
@@ -51,10 +56,33 @@ export const selectMoviesByPage = createSelector(
     selectUserPage,
     selectPageSize,
     selectSearchMovies,
-    (userPage, pageSize, movies) => {
+    selectSortPerPage,
+    (userPage, pageSize, movies, needSort) => {
         const frame = (MovieDB.pageSize / pageSize) >> 0;
         const startIndex = ((userPage - 1) % frame) * pageSize;
 
-        return movies.slice(startIndex, startIndex + pageSize);
+        const result = movies.slice(startIndex, startIndex + pageSize);
+
+        let sortLogic;
+
+        if (needSort) {
+            if (needSort === SortPerPage.byRank) {
+                sortLogic = ratingSort;
+            }
+
+            if (needSort === SortPerPage.byTitle) {
+                sortLogic = titleSort;
+            }
+        }
+
+        return sortLogic ? result.sort(sortLogic) : result;
     },
 );
+
+function titleSort(a: Movie, b: Movie) {
+    return a.title.localeCompare(b.title);
+}
+
+function ratingSort(a: Movie, b: Movie) {
+    return b.rating - a.rating;
+}
