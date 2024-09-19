@@ -5,7 +5,8 @@ import { getMovieDbPage } from "src/utils/pagination/movieDbPage";
 import { isRecordsInFrame } from "src/utils/pagination/recordsInFrame";
 
 import { movieSearchSlice } from "../reducers/movieSearch";
-import { selectMovieCount, selectPage, selectPageSize, selectUserPage } from "../selectors/searchMovies";
+import { selectMovieCount, selectPage, selectUserPage } from "../selectors/searchMovies";
+import { selectPageSize } from "../selectors/settings";
 import { State } from "../store";
 
 import { searchMovieAction } from "./movieSearchAction";

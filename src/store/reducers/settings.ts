@@ -20,7 +20,7 @@ export const settingsSlice = createSlice({
         setPageSize(state, { payload }: PayloadAction<PageSize>) {
             state.pageSize = payload;
         },
-        setViewList(state, { payload }: PayloadAction<View>) {
+        setView(state, { payload }: PayloadAction<View>) {
             state.view = payload;
         },
     },

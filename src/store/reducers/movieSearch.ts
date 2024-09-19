@@ -6,11 +6,9 @@ import { searchMovieAction } from "../actions/movieSearchAction";
 function getInitialState(): MovieSearchState {
     return {
         query: "",
-        pageSize: 10,
         pending: false,
         userPage: 0,
         page: 0,
-        totalPages: 0,
         totalMovies: 0,
         list: [],
     };
@@ -29,7 +27,6 @@ export const movieSearchSlice = createSlice({
         },
         update(state, { payload }: PayloadAction<MovieResultList>) {
             state.page = payload.page;
-            state.totalPages = ((payload.totalMovies / state.pageSize) >> 0) + 1;
             state.list = payload.list;
             state.totalMovies = payload.totalMovies;
         },

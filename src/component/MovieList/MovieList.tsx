@@ -1,9 +1,9 @@
 import * as React from "react";
 
 import { MovieItem } from "src/entity/MovieItem/MovieItem";
+import { selectTotalPages } from "src/store/featureSelectors/paginationSelectors";
 import { selectMoviesOverview } from "src/store/featureSelectors/selectMoviesOverview";
 import { useSelector } from "src/store/hooks";
-import { selectTotalPages } from "src/store/selectors/searchMovies";
 
 import style from "./style.pcss";
 

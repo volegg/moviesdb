@@ -4,7 +4,7 @@ export const enum View {
 }
 
 export const enum PageSize {
-    min = 4,
+    four = 4,
     five = 5,
     ten = 10,
     max = 20,

@@ -13,10 +13,8 @@ type MovieTopRatedState = MoviePopularState;
 
 type MovieSearchState = {
     query: string;
-    pageSize: number;
     userPage: number;
     page: number;
-    totalPages: number;
     totalMovies: number;
     pending: boolean;
     list: Movie[];

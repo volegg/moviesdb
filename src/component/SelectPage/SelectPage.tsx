@@ -3,9 +3,9 @@ import cn from "classnames";
 
 import { Button } from "src/entity/Button/Button";
 import { searchMovieByPageAction } from "src/store/actions/searchMovieByPageAction";
-import { selectUserPages } from "src/store/featureSelectors/paginationSelectors";
+import { selectTotalPages, selectUserPages } from "src/store/featureSelectors/paginationSelectors";
 import { useDispatch, useSelector } from "src/store/hooks";
-import { selectMovieTitle, selectPending, selectTotalPages, selectUserPage } from "src/store/selectors/searchMovies";
+import { selectMovieTitle, selectPending, selectUserPage } from "src/store/selectors/searchMovies";
 
 import style from "./style.pcss";
 

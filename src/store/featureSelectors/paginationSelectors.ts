@@ -3,7 +3,12 @@ import { createSelector } from "@reduxjs/toolkit";
 import { MovieDB } from "src/const/moviedb";
 import { PageNumbersCount } from "src/const/pagination";
 
-import { selectPageSize, selectSearchMovies, selectTotalPages, selectUserPage } from "../selectors/searchMovies";
+import { selectSearchMovies, selectTotalMovies, selectUserPage } from "../selectors/searchMovies";
+import { selectPageSize } from "../selectors/settings";
+
+export const selectTotalPages = createSelector(selectPageSize, selectTotalMovies, (pageSize, totalMovies) => {
+    return ((totalMovies / pageSize) >> 0) + 1;
+});
 
 export const selectUserPages = createSelector(selectTotalPages, selectUserPage, (totalPages, page) => {
     const pages = [];
