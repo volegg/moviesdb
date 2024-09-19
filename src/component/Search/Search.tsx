@@ -16,12 +16,15 @@ export function Search() {
     const dispatch = useDispatch();
     const [movieTitle, setMovieTitle] = useState(queryParam.title || "");
     const moviesPending = useSelector(selectPending);
-    const hasSearchFromQuery = useRef(false);
+    const wasUpdated = useRef(false);
 
     useEffect(() => {
-        if (!hasSearchFromQuery.current && movieTitle) {
-            hasSearchFromQuery.current = true;
-            doSearch(queryParam.page);
+        if (!wasUpdated.current && movieTitle) {
+            wasUpdated.current = true;
+
+            window.setTimeout(() => {
+                doSearch(queryParam.page);
+            }, 50);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);

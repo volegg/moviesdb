@@ -1,9 +1,11 @@
 import * as React from "react";
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { fa0, fa1, fa2, fa4, fa5, faBars, faGrip } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { PageSize, View } from "src/const/pagination";
+import { queryParam } from "src/queryString/parseQueryString";
+import { updateQueryParam } from "src/queryString/updateQueryValue";
 import { useDispatch, useSelector } from "src/store/hooks";
 import { settingsSlice } from "src/store/reducers/settings";
 import { selectPageSize, selectView } from "src/store/selectors/settings";
@@ -14,6 +16,17 @@ export function Settings() {
     const dispatch = useDispatch();
     const pageSize = useSelector(selectPageSize);
     const view = useSelector(selectView);
+    const wasUpdated = useRef(false);
+
+    useEffect(() => {
+        if (!wasUpdated.current) {
+            wasUpdated.current = true;
+
+            setView(queryParam.view);
+            setPageSize(queryParam.pageSize);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const onPageSizeFour = useCallback(createOnClickPageSize(PageSize.four), []);
@@ -58,12 +71,14 @@ export function Settings() {
     function createOnClickPageSize(newPageSize: PageSize) {
         return () => {
             setPageSize(newPageSize);
+            updateQueryParam("pageSize", newPageSize);
         };
     }
 
     function createOnClickView(newView: View) {
         return () => {
             setView(newView);
+            updateQueryParam("view", newView);
         };
     }
 

@@ -9,7 +9,3 @@ export const enum PageSize {
     ten = 10,
     max = 20,
 }
-
-export const enum PageNumbersCount {
-    default = 5,
-}

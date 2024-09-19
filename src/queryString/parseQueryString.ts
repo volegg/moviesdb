@@ -1,23 +1,26 @@
+import { PageSize, View } from "src/const/pagination";
+
 const defaultParams: QueryParams = {
-    devMode: false,
+    devMode: 0,
     page: 0,
     title: "",
+    view: View.list,
+    pageSize: PageSize.ten,
 };
 
 export const queryParam: Readonly<QueryParams> = ((queryString) => {
     const urlParams = new URLSearchParams(queryString);
 
-    const isDevMode = parseInt(urlParams.get("devMode") ?? "0", 10) === 1;
-
-    if (isDevMode) {
-        defaultParams.devMode = isDevMode;
-    }
-
-    const page = parseInt(urlParams.get("page") ?? "1", 10);
-
-    if (!isNaN(page)) {
-        defaultParams.page = page;
-    }
+    assignNumber(defaultParams, "devMode");
+    assignNumber(defaultParams, "page", (x) => {
+        return x > 0;
+    });
+    assignNumber(defaultParams, "pageSize", (x) => {
+        return [4, 5, 10, 20].includes(x);
+    });
+    assignNumber(defaultParams, "view", (x) => {
+        return [1, 2].includes(x);
+    });
 
     const title = (urlParams.get("title") || "").trim().replace(/\s+/g, " ");
 
@@ -26,4 +29,12 @@ export const queryParam: Readonly<QueryParams> = ((queryString) => {
     }
 
     return defaultParams;
+
+    function assignNumber(queryParams: QueryParams, prop: keyof QueryParams, condition = (x: number) => x === x) {
+        const n = parseInt(urlParams.get(prop) ?? "", 10);
+
+        if (!isNaN(n) && condition(n)) {
+            Object.assign(queryParams, { [prop]: n });
+        }
+    }
 })(window.location.search);

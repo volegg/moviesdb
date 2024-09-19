@@ -3,9 +3,13 @@ import cn from "classnames";
 
 import { Button } from "src/entity/Button/Button";
 import { searchMovieByPageAction } from "src/store/actions/searchMovieByPageAction";
-import { selectTotalPages, selectUserPages } from "src/store/featureSelectors/paginationSelectors";
+import {
+    selectCurrentUserPage,
+    selectTotalPages,
+    selectUserPages,
+} from "src/store/featureSelectors/paginationSelectors";
 import { useDispatch, useSelector } from "src/store/hooks";
-import { selectMovieTitle, selectPending, selectUserPage } from "src/store/selectors/searchMovies";
+import { selectMovieTitle, selectPending } from "src/store/selectors/searchMovies";
 
 import style from "./style.pcss";
 
@@ -13,7 +17,7 @@ export function SelectPage() {
     const dispatch = useDispatch();
     const moviesPending = useSelector(selectPending);
     const movieTitle = useSelector(selectMovieTitle);
-    const selectedPage = useSelector(selectUserPage);
+    const selectedPage = useSelector(selectCurrentUserPage);
     const pages = useSelector(selectUserPages);
     const totalPages = useSelector(selectTotalPages);
 
@@ -27,6 +31,7 @@ export function SelectPage() {
                         <div
                             className={cn(style.pageNum, num === selectedPage ? style.selected : "")}
                             key={num + "_" + i}
+                            onClick={createSelectPage(num)}
                         >
                             {num}
                         </div>
@@ -37,6 +42,12 @@ export function SelectPage() {
             <Button onClick={onClickLast}>{totalPages}</Button>
         </div>
     );
+
+    function createSelectPage(pageNum: number) {
+        return () => {
+            doSearch(pageNum);
+        };
+    }
 
     function onClickFirst() {
         doSearch(1);

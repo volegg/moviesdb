@@ -4,8 +4,9 @@ import { updateQueryParam } from "src/queryString/updateQueryValue";
 import { getMovieDbPage } from "src/utils/pagination/movieDbPage";
 import { isRecordsInFrame } from "src/utils/pagination/recordsInFrame";
 
+import { selectCurrentUserPage } from "../featureSelectors/paginationSelectors";
 import { movieSearchSlice } from "../reducers/movieSearch";
-import { selectMovieCount, selectPage, selectUserPage } from "../selectors/searchMovies";
+import { selectMovieCount, selectPage } from "../selectors/searchMovies";
 import { selectPageSize } from "../selectors/settings";
 import { State } from "../store";
 
@@ -21,7 +22,7 @@ export const searchMovieByPageAction = createAsyncThunk<void, SearchMovieByPageP
     (params, thunkAPI) => {
         const state = thunkAPI.getState() as State;
         const actualPage = selectPage(state);
-        const selectedPage = selectUserPage(state);
+        const selectedPage = selectCurrentUserPage(state);
         const pageSize = selectPageSize(state);
         const hasMovies = selectMovieCount(state) > 0;
         const inFrame = isRecordsInFrame(actualPage, params.page, pageSize);
