@@ -8,3 +8,10 @@ type Movie = {
     lang: string;
     overview: string;
 };
+
+type MovieResultList = {
+    page: number;
+    totalPages: number;
+    totalMovies: number;
+    list: Movie[];
+};

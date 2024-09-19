@@ -8,9 +8,17 @@
     border: var(--border-widht) solid #8b8b8b;
     border-radius: 1em;
     background-color: #938F8C55;
+
+    opacity: 1;
+    will-change: opacity;
+    transition: opacity 300ms;
 }
 
 .title {
     font-weight: bold;
     letter-spacing: 0.1em;
+}
+
+.hidden {
+    opacity: 0;
 }

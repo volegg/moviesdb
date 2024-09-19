@@ -18,6 +18,7 @@ export function createResponseHandler(_getState: () => State, dispatch: Dispatch
             const data: Movie[] = response.payload.results.map(serverMovieToUi);
 
             dispatch(moviePopularSlice.actions.update(data));
+
             return;
         }
 
@@ -29,16 +30,18 @@ export function createResponseHandler(_getState: () => State, dispatch: Dispatch
         }
 
         if (isMovieSearchResponse(response)) {
-            const data: Movie[] = response.payload.results.map(serverMovieToUi);
+            if (response.payload.total_results > 0) {
+                const data: Movie[] = response.payload.results.map(serverMovieToUi);
 
-            dispatch(
-                movieSearchSlice.actions.update({
-                    page: response.payload.page,
-                    totalPages: response.payload.total_pages,
-                    totalMovies: response.payload.total_results,
-                    list: data,
-                }),
-            );
+                dispatch(
+                    movieSearchSlice.actions.update({
+                        page: response.payload.page,
+                        totalPages: response.payload.total_pages,
+                        totalMovies: response.payload.total_results,
+                        list: data,
+                    }),
+                );
+            }
             return;
         }
     };

@@ -1,7 +1,25 @@
+@keyframes animLoading {
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 0.1;
+    }
+
+    100% {
+        opacity: 0.5;
+    }
+}
+
 .root {
     margin: 1em 0;
 }
 
-.header {
-    display: flex;
+.movies {
+    opacity: 1;
+}
+
+.loading {
+    animation: 500ms linear infinite running animLoading;
 }

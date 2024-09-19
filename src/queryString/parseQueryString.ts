@@ -1,5 +1,6 @@
 const defaultParams: QueryParams = {
     devMode: false,
+    title: "",
 };
 
 export const queryParam: Readonly<QueryParams> = ((queryString) => {
@@ -9,6 +10,12 @@ export const queryParam: Readonly<QueryParams> = ((queryString) => {
 
     if (isDevMode) {
         defaultParams.devMode = isDevMode;
+    }
+
+    const title = (urlParams.get("title") || "").trim().replace(/\s+/g, " ");
+
+    if (title) {
+        defaultParams.title = title;
     }
 
     return defaultParams;

@@ -10,14 +10,26 @@ export const selectSearchMovies = createSelector(getState, (state) => {
     return state.list;
 });
 
-export const selectPage = createSelector(getState, (state) => {
-    return state.page;
-});
-
 export const selectTotalPages = createSelector(getState, (state) => {
     return state.totalPages;
 });
 
+export const selectPage = createSelector(getState, (state) => {
+    return state.page;
+});
+
 export const selectPending = createSelector(getState, (state) => {
     return state.pending;
+});
+
+export const selectUserPage = createSelector(getState, (state) => {
+    return state.userPage;
+});
+
+export const selectPageSize = createSelector(getState, (state) => {
+    return state.pageSize;
+});
+
+export const selectMovieTitle = createSelector(getState, (state) => {
+    return state.query;
 });

@@ -11,6 +11,7 @@ export function SearchBox({ onEnter, ...props }: SearchBoxProps) {
     return (
         <div className={style.root}>
             <InputBox
+                value={props.value}
                 icon={props.icon ?? faSearch}
                 placeholder={props.placeholder}
                 onChange={props.onChange}

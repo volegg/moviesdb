@@ -5,7 +5,10 @@ import { searchMovieAction } from "../actions/movieSearchAction";
 
 function getInitialState(): MovieSearchState {
     return {
+        query: "",
+        pageSize: 10,
         pending: false,
+        userPage: 0,
         page: 0,
         totalPages: 0,
         totalMovies: 0,
@@ -17,7 +20,10 @@ export const movieSearchSlice = createSlice({
     name: "movieSearch",
     initialState: getInitialState(),
     reducers: {
-        update(state, { payload }: PayloadAction<Omit<MovieSearchState, "pending">>) {
+        query(state, { payload }: PayloadAction<string>) {
+            state.query = payload;
+        },
+        update(state, { payload }: PayloadAction<MovieResultList>) {
             state.page = payload.page;
             state.totalPages = payload.totalPages;
             state.totalMovies = payload.totalMovies;

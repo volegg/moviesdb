@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import { Panel } from "src/entity/Panel/Panel";
@@ -10,9 +11,18 @@ export function createMovieByTop(title: string, selector: (state: State) => AnyT
     // eslint-disable-next-line react/display-name
     return () => {
         const posters = useSelector(selector);
+        const [hidden, setHidden] = useState(true);
+
+        useEffect(() => {
+            setHidden(() => posters.length === 0);
+        }, [posters]);
+
+        if (posters.length < 1) {
+            return null;
+        }
 
         return (
-            <Panel title={title + " " + posters.length}>
+            <Panel title={title + " " + posters.length} hidden={hidden}>
                 <div className={style.root}>
                     {posters.map(({ date, ...item }: Movie, i: string) => {
                         return (
