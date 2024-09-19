@@ -5,6 +5,22 @@ Movies DB API <https://developer.themoviedb.org/docs/getting-started>
 
 [Live DEMO](https://oleggnet.dev/cv/moviesdb/)
 
+## Usage
+
+### API Key
+
+If the default API key has expired, you can pass a new one using the query string `apiKey=KEY-STRING`
+
+### Settings
+
+**view** - list or tile
+**sort per page** - sort by rank or by title
+**movie count** - you can set movie count per page: 4, 5, 10, 20
+
+### Direct link
+
+Application read query sting and use this parameters by default
+
 ## Installation
 
 1. Requirements.
