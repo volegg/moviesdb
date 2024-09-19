@@ -69,6 +69,8 @@ interface ITransport {
     setResponseHandler(rh: ApiCallback);
     setErrorHandler(rh: ApiErrorCallback);
 
+    setApiKey(key: string): void;
+
     searchMovieApi(params: SearchMovieParams): Promise<void>;
     genreListApi(): Promise<void>;
     moviePopularApi(page: number): Promise<void>;

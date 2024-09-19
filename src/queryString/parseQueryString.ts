@@ -7,6 +7,7 @@ const defaultParams: QueryParams = {
     view: View.list,
     pageSize: PageSize.ten,
     sort: SortPerPage.none,
+    apiKey: "17e3316343c81635a33bb19501cbc15b",
 };
 
 export const queryParam: Readonly<QueryParams> = ((queryString) => {
@@ -30,6 +31,12 @@ export const queryParam: Readonly<QueryParams> = ((queryString) => {
 
     if (title) {
         defaultParams.title = title;
+    }
+
+    const apiKey = (urlParams.get("apiKey") || "").trim().replace(/\s+/g, "");
+
+    if (apiKey) {
+        defaultParams.apiKey = apiKey;
     }
 
     return defaultParams;

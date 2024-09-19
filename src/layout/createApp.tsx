@@ -2,6 +2,7 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 
+import { queryParam } from "src/queryString/parseQueryString";
 import { fetchMovieGenresAction } from "src/store/actions/movieGenresAction";
 import { fetchMoviePopularAction } from "src/store/actions/moviePopularAction";
 import { fetchMovieTopRatedAction } from "src/store/actions/movieTopRatedAction";
@@ -12,6 +13,8 @@ import { setTransportInstance } from "src/store/transport";
 import { getComputedStyle } from "src/utils/dom/computedProperty";
 
 export function createApp(Layout: JSX.Element, transport: ITransport) {
+    transport.setApiKey(queryParam.apiKey);
+
     const rootNode = document.createElement("div");
 
     rootNode.id = "root";

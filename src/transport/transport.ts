@@ -2,6 +2,10 @@ import { api } from "./api";
 import { ApiEndpoint } from "./const";
 
 export class Transport implements ITransport {
+    setApiKey(key: string): void {
+        api.setApiKey(key);
+    }
+
     topRated(): Promise<void> {
         throw new Error("Method not implemented.");
     }

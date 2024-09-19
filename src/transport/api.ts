@@ -1,7 +1,10 @@
-const api_key = "17e3316343c81635a33bb19501cbc15b";
+let api_key = "";
 const baseUri = "https://api.themoviedb.org/3";
 
 export const api = {
+    setApiKey(key: string) {
+        api_key = key;
+    },
     searchMovie: createHttp("/search/movie"),
     genreMovieList: createHttp("/genre/movie/list"),
     moviePopular: createHttp("/movie/popular"),
