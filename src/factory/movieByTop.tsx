@@ -6,7 +6,7 @@ import { Poster } from "src/entity/Poster/Poster";
 import type { State } from "src/store/store";
 import { toMonthYear } from "src/utils/date/toMonthYear";
 
-export function createMovie20(title: string, selector: (state: State) => AnyType, style: AnyType) {
+export function createMovieByTop(title: string, selector: (state: State) => AnyType, style: AnyType) {
     // eslint-disable-next-line react/display-name
     return () => {
         const posters = useSelector(selector);
@@ -14,7 +14,7 @@ export function createMovie20(title: string, selector: (state: State) => AnyType
         return (
             <Panel title={title + " " + posters.length}>
                 <div className={style.root}>
-                    {posters.map(({ date, ...item }: MovieSearch, i: string) => {
+                    {posters.map(({ date, ...item }: Movie, i: string) => {
                         return (
                             <Poster
                                 key={item.title + "-" + i}

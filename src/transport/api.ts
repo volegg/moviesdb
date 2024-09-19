@@ -1,5 +1,3 @@
-import { ApplicationError } from "src/error/ApplicationError";
-
 const api_key = "17e3316343c81635a33bb19501cbc15b";
 const baseUri = "https://api.themoviedb.org/3";
 
@@ -15,17 +13,24 @@ function createHttp(path: string, method = "GET") {
         let body: string;
         let query: string;
 
-        if (method === "GET" && params) {
-            query = Object.entries(params).reduce((q, [key, value]) => {
-                q += `${key}=${value.toString()}`;
-
-                return q;
-            }, "&");
-        } else if (method === "POST" && params) {
-            body = JSON.stringify(params);
-        }
-
         return new Promise((resolve, reject) => {
+            try {
+                if (method === "GET" && params) {
+                    query = Object.entries(params).reduce((q, [key, value]) => {
+                        if (value !== null && value !== undefined) {
+                            q += `&${key}=${value.toString()}`;
+                        }
+
+                        return q;
+                    }, "");
+                } else if (method === "POST" && params) {
+                    body = JSON.stringify(params);
+                }
+            } catch (ex) {
+                reject(ex);
+                return;
+            }
+
             fetch(`${baseUri}${path}?api_key=${api_key}${query ? query : ""}`, {
                 method,
                 body,
@@ -54,7 +59,7 @@ function createHttp(path: string, method = "GET") {
                         return;
                     }
 
-                    reject(new ApplicationError(response.statusText));
+                    reject(response.status);
                 })
                 .catch(reject);
         });

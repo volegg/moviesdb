@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 import { fetchMoviePopularAction } from "../actions/moviePopularAction";
 
@@ -13,7 +14,7 @@ export const moviePopularSlice = createSlice({
     name: "moviePopular",
     initialState: getInitialState(),
     reducers: {
-        update(state, { payload }: PayloadAction<MoviePopular[]>) {
+        update(state, { payload }: PayloadAction<Movie[]>) {
             state.list = payload;
         },
     },

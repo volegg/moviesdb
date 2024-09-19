@@ -1,40 +1,35 @@
-import { consoleLog } from "src/console/log";
 import { ApiEndpoint } from "src/transport/const";
-import { getTopMovie } from "src/utils/adapters/getTopMovie";
+import { serverMovieToUi } from "src/utils/adapters/serverMovieToUi";
 
+import { movieGenresSlice } from "./reducers/movieGenres";
 import { moviePopularSlice } from "./reducers/moviePopular";
 import { movieSearchSlice } from "./reducers/movieSearch";
 import { movieTopRatedSlice } from "./reducers/movieTopRated";
 import type { Dispatch, State } from "./store";
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export function createResponseHandler(_getState: () => State, dispatch: Dispatch): ApiCallback {
     return (response) => {
+        if (isMovieGenresResponse(response)) {
+            dispatch(movieGenresSlice.actions.update(response.payload.genres));
+            return;
+        }
+
         if (isMoviePopularResponse(response)) {
-            const data: MoviePopular[] = response.payload.results.map(getTopMovie);
+            const data: Movie[] = response.payload.results.map(serverMovieToUi);
 
             dispatch(moviePopularSlice.actions.update(data));
             return;
         }
 
         if (isMovieTopRatedResponse(response)) {
-            const data: MoviePopular[] = response.payload.results.map(getTopMovie);
+            const data: Movie[] = response.payload.results.map(serverMovieToUi);
 
             dispatch(movieTopRatedSlice.actions.update(data));
             return;
         }
 
         if (isMovieSearchResponse(response)) {
-            const data: MovieSearch[] = response.payload.results.map((movie) => {
-                return {
-                    title: movie.title,
-                    image: "https://media.themoviedb.org/t/p/w220_and_h330_face" + movie.poster_path,
-                    date: movie.release_date,
-                    rating: ((movie.vote_average * 10) >> 0) / 10,
-                    lang: movie.original_language,
-                    genreIds: movie.genre_ids,
-                };
-            });
+            const data: Movie[] = response.payload.results.map(serverMovieToUi);
 
             dispatch(
                 movieSearchSlice.actions.update({
@@ -46,8 +41,6 @@ export function createResponseHandler(_getState: () => State, dispatch: Dispatch
             );
             return;
         }
-
-        consoleLog(response);
     };
 }
 
@@ -61,4 +54,8 @@ function isMovieSearchResponse(response: TransportResponse): response is MovieSe
 
 function isMovieTopRatedResponse(response: TransportResponse): response is MovieTopRatedResponse {
     return ApiEndpoint.topRated === response.type;
+}
+
+function isMovieGenresResponse(response: TransportResponse): response is MovieGenresResponse {
+    return ApiEndpoint.genereMovieList === response.type;
 }

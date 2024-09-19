@@ -4,7 +4,7 @@ import { RatingItem } from "../RatingItem/RatingItem";
 
 import style from "./style.pcss";
 
-type PosterProps = MoviePopular & {
+type PosterProps = Omit<Movie, "lang" | "overview" | "genreIds"> & {
     width?: number;
     height?: number;
 };

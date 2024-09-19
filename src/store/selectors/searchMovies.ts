@@ -6,10 +6,18 @@ function getState(state: State) {
     return state.movieSearchReducer;
 }
 
-export const selectMovies = createSelector(getState, (state) => {
+export const selectSearchMovies = createSelector(getState, (state) => {
     return state.list;
 });
 
 export const selectPage = createSelector(getState, (state) => {
     return state.page;
+});
+
+export const selectTotalPages = createSelector(getState, (state) => {
+    return state.totalPages;
+});
+
+export const selectPending = createSelector(getState, (state) => {
+    return state.pending;
 });

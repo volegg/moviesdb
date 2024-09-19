@@ -1,6 +1,12 @@
+type MovieGenre = ServerGenreProps;
+
+type MovieGenresState = {
+    list: MovieGenre[];
+};
+
 type MoviePopularState = {
     pending: boolean;
-    list: MoviePopular[];
+    list: Movie[];
 };
 
 type MovieTopRatedState = MoviePopularState;
@@ -10,5 +16,5 @@ type MovieSearchState = {
     totalPages: number;
     totalMovies: number;
     pending: boolean;
-    list: MovieSearch[];
+    list: Movie[];
 };

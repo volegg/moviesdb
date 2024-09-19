@@ -2,13 +2,14 @@
     position: relative;
     font-size: 0.8em;
     display: grid;
-    grid-template-columns: 3em auto 5em 6em 15em 1em;
+    grid-template-columns: 3em auto 5em 1em 6em 15em;
     column-gap: 0.25em;
     align-items: center;
     border-radius: 1em;
     padding: 0.5em 0.5em;
-    background-color: #ffffff66;
-    box-shadow: 0 0 1em #ffffffbb;
+    margin: 0.25em 0;
+    background-color: #dfdfdf66;
+    box-shadow: 0 0 1em #efefefbb;
     transition: background-color 500ms;
 
     & div:nth-child(2) {
@@ -17,11 +18,11 @@
 
     & div:nth-child(3), 
     & div:nth-child(4),
-    & div:nth-child(6) {
+    & div:nth-child(5) {
         text-align: center;
     }
 
-    & div:nth-child(5) {
+    & div:nth-child(6) {
         text-align: right;
     }
 
@@ -31,12 +32,7 @@
     }
 }
 
-.rating {
-    width: 4em;
-}
-
 .poster {
     background-size: cover;
-    height: 3em;
-    margin-right: 0.5em;
+    height: 4em;
 }

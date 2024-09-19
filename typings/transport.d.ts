@@ -7,7 +7,12 @@ type ApiEndpoints = MovieSearchEndpoint | MovieGenresEndpoint | MoviePopularEndp
 
 type ApiPayload = AnyType;
 
-type MovieFields = {
+type ServerGenreProps = {
+    id: number;
+    name: string;
+};
+
+type ServerMovieProps = {
     genre_ids: number[];
     id: number;
     title: string;
@@ -17,6 +22,7 @@ type MovieFields = {
     release_date: string;
     poster_path: string;
     backdrop_path: string;
+    overview: string;
 };
 
 type Payload<TResults> = {
@@ -28,27 +34,24 @@ type Payload<TResults> = {
 
 type MovieSearchResponse = {
     type: MovieSearchEndpoint;
-    payload: Payload<MovieFields[]>;
+    payload: Payload<ServerMovieProps[]>;
 };
 
 type MovieGenresResponse = {
     type: MovieGenresEndpoint;
     payload: {
-        genres: Array<{
-            id: number;
-            name: string;
-        }>;
+        genres: ServerGenreProps[];
     };
 };
 
 type MoviePopularResponse = {
     type: MoviePopularEndpoint;
-    payload: Payload<Array<MovieFields>>;
+    payload: Payload<Array<ServerMovieProps>>;
 };
 
 type MovieTopRatedResponse = {
     type: MovieTopRatedEndpoint;
-    payload: Payload<MovieFields[]>;
+    payload: Payload<ServerMovieProps[]>;
 };
 
 type TransportResponse = MoviePopularResponse | MovieGenresResponse | MovieSearchResponse | MovieTopRatedResponse;

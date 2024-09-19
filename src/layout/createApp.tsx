@@ -2,6 +2,7 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 
+import { fetchMovieGenresAction } from "src/store/actions/movieGenresAction";
 import { fetchMoviePopularAction } from "src/store/actions/moviePopularAction";
 import { fetchMovieTopRatedAction } from "src/store/actions/movieTopRatedAction";
 import { createErrorHandler } from "src/store/errorHandler";
@@ -44,6 +45,7 @@ export function createApp(Layout: JSX.Element, transport: ITransport) {
         }, duration + 10);
     }
 
+    store.dispatch(fetchMovieGenresAction());
     store.dispatch(fetchMoviePopularAction(1));
     store.dispatch(fetchMovieTopRatedAction(1));
 }

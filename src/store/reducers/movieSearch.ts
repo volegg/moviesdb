@@ -1,11 +1,12 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import type { PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 import { searchMovieAction } from "../actions/movieSearchAction";
 
 function getInitialState(): MovieSearchState {
     return {
         pending: false,
-        page: 1,
+        page: 0,
         totalPages: 0,
         totalMovies: 0,
         list: [],

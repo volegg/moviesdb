@@ -18,12 +18,10 @@ export function MovieItem(props: MovieItemProps) {
         <div className={style.root}>
             <div className={style.poster} style={{ backgroundImage: "url(" + props.image + ")" }}></div>
             <div>{props.title}</div>
-            <div className={style.rating}>
-                <RatingItem value={props.rating} />
-            </div>
+            <RatingItem value={props.rating} />
+            <div>{props.lang.toUpperCase()}</div>
             <div>{props.date}</div>
             <div>{props.genres}</div>
-            <div>{props.lang}</div>
         </div>
     );
 }
