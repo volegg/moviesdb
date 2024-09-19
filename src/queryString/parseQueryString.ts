@@ -4,7 +4,7 @@ const defaultParams: QueryParams = {
     devMode: 0,
     page: 0,
     title: "",
-    view: View.list,
+    view: View.tile,
     pageSize: PageSize.ten,
     sort: SortPerPage.none,
     apiKey: "17e3316343c81635a33bb19501cbc15b",

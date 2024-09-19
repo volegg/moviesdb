@@ -18,18 +18,22 @@ export function Entities() {
 
     return (
         <div className={style.root}>
+            <h1>InputBox</h1>
             <div>
                 <InputBox placeholder="INPUT" onChange={onChange} onEnter={onEnter} />
             </div>
             <hr></hr>
+            <h1>SearchBox</h1>
             <div>
                 <SearchBox placeholder="Search movies" onChange={onChange} onEnter={onEnter} />
             </div>
             <hr></hr>
+            <h1>Button</h1>
             <div>
                 <Button onClick={onClick}>Primary Button</Button>
             </div>
             <hr></hr>
+            <h1>Panel</h1>
             <div>
                 <Panel>
                     <div className={style.search}>
@@ -39,13 +43,16 @@ export function Entities() {
                 </Panel>
             </div>
             <hr></hr>
+            <h1>Poster</h1>
             <div>
+                <Poster rating={0} title="" date="" image={imgSrc} />
                 <Poster rating={1} title="movie" date="2024-01-01" image={imgSrc} />
-                <Poster rating={5} title="movie" date="2024-01-01" image={imgSrc} />
+                <Poster rating={5} title="movie" genre="Action" date="2024-01-01" image={imgSrc} />
                 <Poster rating={8} title="movie" date="2024-01-01" image={imgSrc} />
-                <Poster rating={9.5} title="movie" date="2024-01-01" image={imgSrc} />
+                <Poster rating={9.5} genre="genre" title="movie" date="" image={imgSrc} width={100} />
             </div>
             <hr></hr>
+            <h1>MovieItem</h1>
             <div>
                 <MovieItem
                     genres="Action, Triller"
@@ -64,6 +71,7 @@ export function Entities() {
                     date="2024-02-08"
                     rating={10}
                 />
+                <MovieItem genres="" image={imgSrc} lang="" title="ISSUE" date="" rating={0} />
             </div>
         </div>
     );
