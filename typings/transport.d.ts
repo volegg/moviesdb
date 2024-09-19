@@ -62,6 +62,7 @@ type ApiErrorCallback = (ex: Error, endpoint: ApiEndpoints) => void;
 type SearchMovieParams = {
     query: string;
     page: number;
+    userPage?: number;
 };
 
 interface ITransport {

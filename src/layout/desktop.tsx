@@ -6,7 +6,7 @@ import { Search } from "src/component/Search/Search";
 import { Top20 } from "src/component/Top20/Top20";
 
 import { createApp } from "./createApp";
-import style from "./style.pcss";
+import style from "./desktop.pcss";
 
 export function render(transport: ITransport) {
     createApp(<Layout />, transport);

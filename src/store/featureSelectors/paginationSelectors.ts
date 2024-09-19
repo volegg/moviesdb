@@ -1,40 +1,17 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-import { MovieDB } from "src/const/moviedb";
-
-import {
-    selectPage,
-    selectPageSize,
-    selectSearchMovies,
-    selectTotalPages,
-    selectUserPage,
-} from "../selectors/searchMovies";
+import { selectPageSize, selectSearchMovies, selectTotalPages, selectUserPage } from "../selectors/searchMovies";
 
 const step = 5;
 
-export const selectCurrentPage = createSelector(selectUserPage, selectPage, (userPage, page) => {
-    return userPage + page;
-});
-
-export const selectCurrentTotalPage = createSelector(selectTotalPages, selectPageSize, (totalPages, pageSize) => {
-    return (totalPages * MovieDB.pageSize) / pageSize;
-});
-
-export const selectNeedNext = createSelector(selectPageSize, selectUserPage, selectPage, (pageSize, userPage, page) => {
-    const ratio = MovieDB.pageSize / pageSize;
-    const actualPage = (userPage / ratio) >> 0;
-
-    return actualPage !== page;
-});
-
-export const selectUserPages = createSelector(selectCurrentTotalPage, selectPage, (totalPages, page) => {
+export const selectUserPages = createSelector(selectTotalPages, selectUserPage, (totalPages, page) => {
     const pages = [];
 
     let startFrom = page;
 
-    if (totalPages - step < page) {
-        startFrom = totalPages - step;
-    } else if (page <= step) {
+    if (totalPages <= page + (step >> 1)) {
+        startFrom = totalPages - step + 1;
+    } else if (page <= step >> 1) {
         startFrom = 1;
     } else {
         startFrom = page - (step >> 1);
@@ -47,11 +24,6 @@ export const selectUserPages = createSelector(selectCurrentTotalPage, selectPage
     return pages;
 });
 
-export const selectMoviesByPage = createSelector(
-    selectPageSize,
-    selectUserPage,
-    selectSearchMovies,
-    (pageSize, userPage, movies) => {
-        return movies.slice(userPage, pageSize);
-    },
-);
+export const selectMoviesByPage = createSelector(selectPageSize, selectSearchMovies, (pageSize, movies) => {
+    return movies.slice(0, pageSize);
+});

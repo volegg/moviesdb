@@ -6,7 +6,7 @@ import { Button } from "src/entity/Button/Button";
 import { SearchBox } from "src/entity/SearchBox/SearchBox";
 import { queryParam } from "src/queryString/parseQueryString";
 import { updateQueryParam } from "src/queryString/updateQueryValue";
-import { searchMovieAction } from "src/store/actions/movieSearchAction";
+import { searchMovieByPageAction } from "src/store/actions/searchMovieByPageAction";
 import { useDispatch, useSelector } from "src/store/hooks";
 import { selectPending } from "src/store/selectors/searchMovies";
 
@@ -21,7 +21,7 @@ export function Search() {
     useEffect(() => {
         if (!hasSearchFromQuery.current && movieTitle) {
             hasSearchFromQuery.current = true;
-            doSearch();
+            doSearch(queryParam.page);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -44,22 +44,19 @@ export function Search() {
     }
 
     function onClick() {
-        doSearch();
+        doSearch(1);
     }
 
     function onEnter(title: string) {
         setMovieTitle(() => title);
-        doSearch();
+        doSearch(1);
     }
 
-    function doSearch() {
+    function doSearch(page: number) {
         if (moviesPending || !movieTitle) {
             return;
         }
 
-        const query = movieTitle.trim().replace(/\s+/g, " ");
-
-        updateQueryParam("title", query);
-        dispatch(searchMovieAction({ query, page: 1 }));
+        dispatch(searchMovieByPageAction({ query: movieTitle, page }));
     }
 }

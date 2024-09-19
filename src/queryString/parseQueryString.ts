@@ -1,5 +1,6 @@
 const defaultParams: QueryParams = {
     devMode: false,
+    page: 0,
     title: "",
 };
 
@@ -10,6 +11,12 @@ export const queryParam: Readonly<QueryParams> = ((queryString) => {
 
     if (isDevMode) {
         defaultParams.devMode = isDevMode;
+    }
+
+    const page = parseInt(urlParams.get("page") ?? "1", 10);
+
+    if (!isNaN(page)) {
+        defaultParams.page = page;
     }
 
     const title = (urlParams.get("title") || "").trim().replace(/\s+/g, " ");

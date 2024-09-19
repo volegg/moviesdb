@@ -20,14 +20,18 @@ export const movieSearchSlice = createSlice({
     name: "movieSearch",
     initialState: getInitialState(),
     reducers: {
-        query(state, { payload }: PayloadAction<string>) {
-            state.query = payload;
+        queryPage(state, { payload }: PayloadAction<{ query: string; userPage?: number }>) {
+            state.query = payload.query;
+
+            if (payload.userPage) {
+                state.userPage = payload.userPage;
+            }
         },
         update(state, { payload }: PayloadAction<MovieResultList>) {
             state.page = payload.page;
-            state.totalPages = payload.totalPages;
-            state.totalMovies = payload.totalMovies;
+            state.totalPages = ((payload.totalMovies / state.pageSize) >> 0) + 1;
             state.list = payload.list;
+            state.totalMovies = payload.totalMovies;
         },
     },
     extraReducers(builder) {

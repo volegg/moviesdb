@@ -18,6 +18,10 @@ export const selectPage = createSelector(getState, (state) => {
     return state.page;
 });
 
+export const selectTotalMovies = createSelector(getState, (state) => {
+    return state.totalMovies;
+});
+
 export const selectPending = createSelector(getState, (state) => {
     return state.pending;
 });

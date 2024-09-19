@@ -3,7 +3,7 @@ import * as React from "react";
 import { Entities } from "src/entity/EntitiesDev/entities";
 
 import { createApp } from "./createApp";
-import style from "./style.pcss";
+import style from "./desktop.pcss";
 
 export function render(transport: ITransport) {
     createApp(<Layout />, transport);
