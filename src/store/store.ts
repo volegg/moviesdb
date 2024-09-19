@@ -4,12 +4,14 @@ import { movieGenresReducer } from "./reducers/movieGenres";
 import { moviePopularReducer } from "./reducers/moviePopular";
 import { movieSearchReducer } from "./reducers/movieSearch";
 import { movieTopRatedReducer } from "./reducers/movieTopRated";
+import { settingsReducer } from "./reducers/settings";
 
 const reducer = combineReducers({
+    movieGenresReducer,
     moviePopularReducer,
     movieSearchReducer,
     movieTopRatedReducer,
-    movieGenresReducer,
+    settingsReducer,
 });
 
 export function setupStore() {

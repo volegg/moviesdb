@@ -21,3 +21,8 @@ type MovieSearchState = {
     pending: boolean;
     list: Movie[];
 };
+
+type SettingsState = {
+    pageSize: 4 | 5 | 10 | 20;
+    view: 1 | 2;
+};

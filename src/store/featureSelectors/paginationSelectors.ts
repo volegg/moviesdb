@@ -1,29 +1,42 @@
 import { createSelector } from "@reduxjs/toolkit";
 
-import { selectPageSize, selectSearchMovies, selectTotalPages, selectUserPage } from "../selectors/searchMovies";
+import { MovieDB } from "src/const/moviedb";
+import { PageNumbersCount } from "src/const/pagination";
 
-const step = 5;
+import { selectPageSize, selectSearchMovies, selectTotalPages, selectUserPage } from "../selectors/searchMovies";
 
 export const selectUserPages = createSelector(selectTotalPages, selectUserPage, (totalPages, page) => {
     const pages = [];
+    const step = PageNumbersCount.default;
+    const avg = step >> 1;
 
     let startFrom = page;
 
-    if (totalPages <= page + (step >> 1)) {
+    if (totalPages <= page + avg) {
         startFrom = totalPages - step + 1;
-    } else if (page <= step >> 1) {
+    } else if (page <= avg) {
         startFrom = 1;
     } else {
-        startFrom = page - (step >> 1);
+        startFrom = page - avg;
     }
 
-    for (let i = startFrom; i < startFrom + step; i++) {
+    const end = startFrom + step;
+
+    for (let i = startFrom; i < end; i++) {
         pages.push(i);
     }
 
     return pages;
 });
 
-export const selectMoviesByPage = createSelector(selectPageSize, selectSearchMovies, (pageSize, movies) => {
-    return movies.slice(0, pageSize);
-});
+export const selectMoviesByPage = createSelector(
+    selectUserPage,
+    selectPageSize,
+    selectSearchMovies,
+    (userPage, pageSize, movies) => {
+        const frame = (MovieDB.pageSize / pageSize) >> 0;
+        const startIndex = ((userPage - 1) % frame) * pageSize;
+
+        return movies.slice(startIndex, startIndex + pageSize);
+    },
+);
