@@ -8,9 +8,10 @@ function BundleVersionPlugin(options) {
 
     return {
         apply(compiler) {
-            compiler.hooks.done.tap(
-                "done",
-                function () {
+            compiler
+                .hooks
+                .done
+                .tap("done", function () {
                     const buildPath = compiler.options.output.path;
 
                     if (!fs.existsSync(buildPath)) {
@@ -19,10 +20,11 @@ function BundleVersionPlugin(options) {
 
                     fs.writeFileSync(path.join(buildPath, "version.json"), JSON.stringify(options.version));
                     console.log(options.version.banner + "\n");
-                },
-            );
+                },);
         }
     }
 }
 
-module.exports = {BundleVersionPlugin: BundleVersionPlugin};
+module.exports = {
+    BundleVersionPlugin: BundleVersionPlugin
+};
