@@ -14,4 +14,5 @@ export const enum SortPerPage {
     none = 0,
     byRank,
     byTitle,
+    byRelease,
 }

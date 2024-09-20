@@ -15,3 +15,5 @@ type MovieResultList = {
     totalMovies: number;
     list: Movie[];
 };
+
+type MovieSort = 0 | 1 | 2 | 3;

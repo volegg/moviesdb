@@ -73,6 +73,10 @@ export const selectMoviesByPage = createSelector(
             if (needSort === SortPerPage.byTitle) {
                 sortLogic = titleSort;
             }
+
+            if (needSort === SortPerPage.byRelease) {
+                sortLogic = releaseSort;
+            }
         }
 
         return sortLogic ? result.sort(sortLogic) : result;
@@ -81,6 +85,13 @@ export const selectMoviesByPage = createSelector(
 
 function titleSort(a: Movie, b: Movie) {
     return a.title.localeCompare(b.title);
+}
+
+function releaseSort(a: Movie, b: Movie) {
+    const x = new Date(a.date).getTime();
+    const y = new Date(b.date).getTime();
+
+    return y - x;
 }
 
 function ratingSort(a: Movie, b: Movie) {

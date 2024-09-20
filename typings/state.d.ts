@@ -23,5 +23,5 @@ type MovieSearchState = {
 type SettingsState = {
     pageSize: 4 | 5 | 10 | 20;
     view: 1 | 2;
-    sortPerPage: 0 | 1 | 2;
+    sortPerPage: MovieSort;
 };

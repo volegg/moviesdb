@@ -32,6 +32,7 @@ export const searchMovieByPageAction = createAsyncThunk<void, SearchMovieByPageP
         }
 
         if (inFrame && hasMovies) {
+            updateQueryParam("page", params.page);
             thunkAPI.dispatch(
                 movieSearchSlice.actions.queryPage({
                     query: params.query,

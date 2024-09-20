@@ -1,6 +1,18 @@
 import * as React from "react";
 import { useCallback, useEffect, useRef } from "react";
-import { fa0, fa1, fa2, fa4, fa5, faBan, faBars, faGrip, faStar, faT } from "@fortawesome/free-solid-svg-icons";
+import {
+    fa0,
+    fa1,
+    fa2,
+    fa4,
+    fa5,
+    faArrowDownAZ,
+    faBan,
+    faBars,
+    faCalendarDays,
+    faGrip,
+    faStar,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { PageSize, SortPerPage, View } from "src/const/pagination";
@@ -25,6 +37,7 @@ export function Settings() {
 
             setView(queryParam.view);
             setPageSize(queryParam.pageSize);
+            setSortPerPage(queryParam.sort);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -49,6 +62,8 @@ export function Settings() {
     const onRankSort = useCallback(createOnClickSort(SortPerPage.byRank), []);
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const onTitleSort = useCallback(createOnClickSort(SortPerPage.byTitle), []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const onReleaseSort = useCallback(createOnClickSort(SortPerPage.byRelease), []);
 
     return (
         <div className={style.root}>
@@ -59,6 +74,7 @@ export function Settings() {
             <div className={view === View.tile ? style.selected : style.item} onClick={onViewTile}>
                 <FontAwesomeIcon icon={faGrip} />
             </div>
+
             <div className={pageSize === PageSize.four ? style.selected : style.item} onClick={onPageSizeFour}>
                 <FontAwesomeIcon icon={fa4} />
             </div>
@@ -73,6 +89,7 @@ export function Settings() {
                 <FontAwesomeIcon icon={fa2} />
                 <FontAwesomeIcon icon={fa0} />
             </div>
+
             <div className={sort === SortPerPage.none ? style.selected : style.item} onClick={onNoneSort}>
                 <FontAwesomeIcon icon={faBan} />
             </div>
@@ -80,7 +97,10 @@ export function Settings() {
                 <FontAwesomeIcon icon={faStar} />
             </div>
             <div className={sort === SortPerPage.byTitle ? style.selected : style.item} onClick={onTitleSort}>
-                <FontAwesomeIcon icon={faT} />
+                <FontAwesomeIcon icon={faArrowDownAZ} />
+            </div>
+            <div className={sort === SortPerPage.byRelease ? style.selected : style.item} onClick={onReleaseSort}>
+                <FontAwesomeIcon icon={faCalendarDays} />
             </div>
         </div>
     );

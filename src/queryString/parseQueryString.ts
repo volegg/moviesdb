@@ -24,7 +24,7 @@ export const queryParam: Readonly<QueryParams> = ((queryString) => {
         return [1, 2].includes(x);
     });
     assignNumber(defaultParams, "sort", (x) => {
-        return [0, 1, 2].includes(x);
+        return [0, 1, 2, 3].includes(x);
     });
 
     const title = (urlParams.get("title") || "").trim().replace(/\s+/g, " ");
