@@ -4,6 +4,7 @@ import { movieGenresReducer } from "./reducers/movieGenres";
 import { moviePopularReducer } from "./reducers/moviePopular";
 import { movieSearchReducer } from "./reducers/movieSearch";
 import { movieTopRatedReducer } from "./reducers/movieTopRated";
+import { notificationReducer } from "./reducers/notifications";
 import { settingsReducer } from "./reducers/settings";
 
 const reducer = combineReducers({
@@ -11,6 +12,7 @@ const reducer = combineReducers({
     moviePopularReducer,
     movieSearchReducer,
     movieTopRatedReducer,
+    notificationReducer,
     settingsReducer,
 });
 

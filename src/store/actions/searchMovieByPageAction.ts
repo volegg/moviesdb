@@ -28,8 +28,6 @@ export const searchMovieByPageAction = createAsyncThunk<void, SearchMovieByPageP
         const inFrame = isRecordsInFrame(actualPage, params.page, pageSize);
         const title = selectMovieTitle(state);
 
-        debugger;
-
         if (selectedPage === params.page && title === params.query) {
             return;
         }

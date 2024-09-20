@@ -1,0 +1,40 @@
+@keyframes showNotification {
+    0% {
+        transform: translateX(100%);    
+    }
+
+    10% {
+        transform: translateX(0);   
+    }
+
+    95% {
+        transform: translateX(0);
+    }
+}
+
+.notification {
+    font-size: 0.8em;
+    position: fixed;
+    top: 3.3em;
+    right: 0;
+    padding: 0.25em 1em;
+    transform: translateX(100%);
+    text-transform: uppercase;
+    pointer-events: none;
+    max-width: 100%;
+    min-width: 33%;
+}
+
+.any {
+    color: #222;
+    background-color: #F6c71dee;
+    border: 0.15em  solid #E2A712;
+    border-right: none;
+    border-left: none;
+}
+
+.show {
+    animation: showNotification;
+    animation-duration: 5s;
+    animation-delay: .25ms;
+}

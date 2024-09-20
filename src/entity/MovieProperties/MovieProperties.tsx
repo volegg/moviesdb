@@ -7,6 +7,7 @@ import { MovieField } from "../MovieField/MovieField";
 export function MovieProperties(movie: ServerFullMovieDescription) {
     const releaseDate = new Date(movie.release_date).toDateString().substring(4);
     const genres = movie.genres.map(({ name }) => name).join(", ");
+    const budget = movie.budget ? "€ " + movie.budget.toLocaleString() : undefined;
 
     return (
         <>
@@ -27,7 +28,7 @@ export function MovieProperties(movie: ServerFullMovieDescription) {
                     .map(({ name, origin_country }) => `${name} (${origin_country})`)
                     .join(", ")}
             />
-            <MovieField label="Budget" info={"€ " + movie.budget.toLocaleString()} />
+            <MovieField label="Budget" info={budget} />
         </>
     );
 }

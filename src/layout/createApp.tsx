@@ -21,8 +21,8 @@ export function createApp(Layout: JSX.Element, transport: ITransport) {
 
     const store = setupStore();
 
-    transport.setResponseHandler(createResponseHandler(store.getState, store.dispatch));
-    transport.setErrorHandler(createErrorHandler());
+    transport.setResponseHandler(createResponseHandler(store.dispatch));
+    transport.setErrorHandler(createErrorHandler(store.dispatch));
     setTransportInstance(transport);
 
     const root = createRoot(rootNode);

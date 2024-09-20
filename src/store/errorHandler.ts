@@ -1,7 +1,8 @@
-import { consoleError } from "src/console/error";
+import { notificationSlice } from "./reducers/notifications";
+import type { Dispatch } from "./store";
 
-export function createErrorHandler(): ApiErrorCallback {
+export function createErrorHandler(dispatch: Dispatch): ApiErrorCallback {
     return (err, endpoint) => {
-        consoleError(`Error endpoint: ${endpoint}\n${err.toString()}`);
+        dispatch(notificationSlice.actions.add(`Error: ${endpoint}\n${err.toString()}`));
     };
 }

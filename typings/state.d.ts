@@ -1,3 +1,7 @@
+type NotificationState = {
+    queue: NotificationItem[];
+};
+
 type MovieGenre = ServerGenreProps;
 
 type MovieGenresState = {

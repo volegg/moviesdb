@@ -1,5 +1,6 @@
 import * as React from "react";
 
+import { Notification } from "src/component/Notification/Notification";
 import { PageContainer } from "src/component/PageContainer/PageContainer";
 import { Search } from "src/component/Search/Search";
 import { TopAndPopular } from "src/component/TopAndPopular/TopAndPopular";
@@ -19,6 +20,7 @@ function Layout() {
                 <PageContainer />
                 <TopAndPopular />
             </div>
+            <Notification />
         </div>
     );
 }

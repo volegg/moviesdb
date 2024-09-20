@@ -5,9 +5,10 @@ import { movieGenresSlice } from "./reducers/movieGenres";
 import { moviePopularSlice } from "./reducers/moviePopular";
 import { movieSearchSlice } from "./reducers/movieSearch";
 import { movieTopRatedSlice } from "./reducers/movieTopRated";
-import type { Dispatch, State } from "./store";
+import { notificationSlice } from "./reducers/notifications";
+import type { Dispatch } from "./store";
 
-export function createResponseHandler(_getState: () => State, dispatch: Dispatch): ApiCallback {
+export function createResponseHandler(dispatch: Dispatch): ApiCallback {
     return (response) => {
         if (isMovieGenresResponse(response)) {
             dispatch(movieGenresSlice.actions.update(response.payload.genres));
@@ -41,6 +42,8 @@ export function createResponseHandler(_getState: () => State, dispatch: Dispatch
                         list: data,
                     }),
                 );
+            } else {
+                dispatch(notificationSlice.actions.add("Unknown movie title, nothing found"));
             }
             return;
         }
