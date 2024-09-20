@@ -1,4 +1,5 @@
 type Movie = {
+    id: number;
     rating: number;
     title: string;
     image: string;

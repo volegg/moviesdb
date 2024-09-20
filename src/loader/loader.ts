@@ -30,6 +30,10 @@ function loadLayout() {
         }
     }
 
+    if (queryParam.showMovie) {
+        return import(/* webpackChunkName: "moviePage" */ "src/layout/moviePage");
+    }
+
     switch (true) {
         case isPhone:
             deferred = import(/* webpackChunkName: "phone" */ "src/layout/phone");

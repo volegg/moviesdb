@@ -65,6 +65,12 @@ type SearchMovieParams = {
     userPage?: number;
 };
 
+type ServerFullMovieDescription = {
+    id: number;
+    title: string;
+    overview: string;
+};
+
 interface ITransport {
     setResponseHandler(rh: ApiCallback);
     setErrorHandler(rh: ApiErrorCallback);
@@ -75,4 +81,6 @@ interface ITransport {
     genreListApi(): Promise<void>;
     moviePopularApi(page: number): Promise<void>;
     topRatedApi(page: number): Promise<void>;
+
+    fetchMovieById(id: number): Promise<ServerFullMovieDescription>;
 }

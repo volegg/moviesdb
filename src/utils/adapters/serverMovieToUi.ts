@@ -4,6 +4,7 @@ export function serverMovieToUi(movie: ServerMovieProps): Movie {
     const posterPath = movie.poster_path ? movie.poster_path : movie.backdrop_path;
 
     return {
+        id: movie.id,
         title: movie.title,
         image: posterPath ? prefixMovieDbUrl + posterPath : "emptyPoster.jpeg",
         date: movie.release_date,

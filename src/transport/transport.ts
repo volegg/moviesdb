@@ -40,6 +40,10 @@ export class Transport implements ITransport {
         return this.wrapper(ApiEndpoint.topRated, api.topRated({ page }));
     }
 
+    fetchMovieById(id: number) {
+        return api.movieById<ServerFullMovieDescription>(id);
+    }
+
     private wrapper(endpoint: ApiEndpoints, deferred: Promise<ApiPayload>) {
         return deferred
             .then((payload) => {

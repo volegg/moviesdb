@@ -9,6 +9,7 @@ export const api = {
     genreMovieList: createHttp("/genre/movie/list"),
     moviePopular: createHttp("/movie/popular"),
     topRated: createHttp("/movie/top_rated"),
+    movieById: <TRet>(id: number) => createHttp("/movie/" + id)() as Promise<TRet>,
 };
 
 function createHttp(path: string, method = "GET") {

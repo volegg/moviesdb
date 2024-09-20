@@ -13,9 +13,9 @@ import {
     faGrip,
     faStar,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { PageSize, SortPerPage, View } from "src/const/pagination";
+import { SettingIcon } from "src/entity/SettingIcon/SettingIcon";
 import { queryParam } from "src/queryString/parseQueryString";
 import { updateQueryParam } from "src/queryString/updateQueryValue";
 import { useDispatch, useSelector } from "src/store/hooks";
@@ -68,40 +68,18 @@ export function Settings() {
     return (
         <div className={style.root}>
             <div></div>
-            <div className={view === View.list ? style.selected : style.item} onClick={onViewList}>
-                <FontAwesomeIcon icon={faBars} />
-            </div>
-            <div className={view === View.tile ? style.selected : style.item} onClick={onViewTile}>
-                <FontAwesomeIcon icon={faGrip} />
-            </div>
+            <SettingIcon icon={faBars} selected={view === View.list} onClick={onViewList} />
+            <SettingIcon icon={faGrip} selected={view === View.tile} onClick={onViewTile} />
 
-            <div className={pageSize === PageSize.four ? style.selected : style.item} onClick={onPageSizeFour}>
-                <FontAwesomeIcon icon={fa4} />
-            </div>
-            <div className={pageSize === PageSize.five ? style.selected : style.item} onClick={onPageSizeFive}>
-                <FontAwesomeIcon icon={fa5} />
-            </div>
-            <div className={pageSize === PageSize.ten ? style.selected : style.item} onClick={onPageSizeTen}>
-                <FontAwesomeIcon icon={fa1} />
-                <FontAwesomeIcon icon={fa0} />
-            </div>
-            <div className={pageSize === PageSize.max ? style.selected : style.item} onClick={onPageSizeMax}>
-                <FontAwesomeIcon icon={fa2} />
-                <FontAwesomeIcon icon={fa0} />
-            </div>
+            <SettingIcon icon={fa4} selected={pageSize === PageSize.four} onClick={onPageSizeFour} />
+            <SettingIcon icon={fa5} selected={pageSize === PageSize.five} onClick={onPageSizeFive} />
+            <SettingIcon icon={fa1} icon2nd={fa0} selected={pageSize === PageSize.ten} onClick={onPageSizeTen} />
+            <SettingIcon icon={fa2} icon2nd={fa0} selected={pageSize === PageSize.max} onClick={onPageSizeMax} />
 
-            <div className={sort === SortPerPage.none ? style.selected : style.item} onClick={onNoneSort}>
-                <FontAwesomeIcon icon={faBan} />
-            </div>
-            <div className={sort === SortPerPage.byRank ? style.selected : style.item} onClick={onRankSort}>
-                <FontAwesomeIcon icon={faStar} />
-            </div>
-            <div className={sort === SortPerPage.byTitle ? style.selected : style.item} onClick={onTitleSort}>
-                <FontAwesomeIcon icon={faArrowDownAZ} />
-            </div>
-            <div className={sort === SortPerPage.byRelease ? style.selected : style.item} onClick={onReleaseSort}>
-                <FontAwesomeIcon icon={faCalendarDays} />
-            </div>
+            <SettingIcon icon={faBan} selected={sort === SortPerPage.none} onClick={onNoneSort} />
+            <SettingIcon icon={faStar} selected={sort === SortPerPage.byRank} onClick={onRankSort} />
+            <SettingIcon icon={faArrowDownAZ} selected={sort === SortPerPage.byTitle} onClick={onTitleSort} />
+            <SettingIcon icon={faCalendarDays} selected={sort === SortPerPage.byRelease} onClick={onReleaseSort} />
         </div>
     );
 

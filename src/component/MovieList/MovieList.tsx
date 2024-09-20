@@ -10,6 +10,7 @@ import { selectMoviesOverview } from "src/store/featureSelectors/selectMoviesOve
 import { useSelector } from "src/store/hooks";
 import { selectPending } from "src/store/selectors/searchMovies";
 import { selectView } from "src/store/selectors/settings";
+import { openMovieTab } from "src/utils/openMovieTab";
 
 import style from "./style.pcss";
 
@@ -40,10 +41,12 @@ export function MovieList() {
     if (view === View.tile) {
         return (
             <div className={style.tile}>
-                {movies.map(({ genres, ...props }, i) => {
+                {movies.map(({ genres, ...props }) => {
                     const genre = genres.split(",")[0];
 
-                    return <Poster genre={genre} key={props.title + i} {...props} width={220} height={330} />;
+                    return (
+                        <Poster onClick={onClick} genre={genre} key={props.id} {...props} width={220} height={330} />
+                    );
                 })}
             </div>
         );
@@ -51,9 +54,13 @@ export function MovieList() {
 
     return (
         <>
-            {movies.map((props, i) => {
-                return <MovieItem key={props.title + i} {...props} />;
+            {movies.map((props) => {
+                return <MovieItem onClick={onClick} key={props.id} {...props} />;
             })}
         </>
     );
+
+    function onClick(id: number) {
+        openMovieTab(id);
+    }
 }

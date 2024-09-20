@@ -7,9 +7,13 @@ import { Poster } from "src/entity/Poster/Poster";
 import type { State } from "src/store/store";
 import { toMonthYear } from "src/utils/date/toMonthYear";
 
+type MovieTopFactoryProps = {
+    onClick(id: number): void;
+};
+
 export function createMovieByTop(title: string, selector: (state: State) => AnyType, style: AnyType) {
     // eslint-disable-next-line react/display-name
-    return () => {
+    return ({ onClick }: MovieTopFactoryProps) => {
         const posters = useSelector(selector);
         const [hidden, setHidden] = useState(true);
 
@@ -29,6 +33,7 @@ export function createMovieByTop(title: string, selector: (state: State) => AnyT
                             <Poster
                                 key={item.title + "-" + i}
                                 {...item}
+                                onClick={onClick}
                                 date={toMonthYear(date)}
                                 width={110}
                                 height={165}

@@ -10,10 +10,6 @@ export const selectSearchMovies = createSelector(getState, (state) => {
     return state.list;
 });
 
-export const selectMovieCount = createSelector(selectSearchMovies, (movies) => {
-    return movies.length;
-});
-
 export const selectPage = createSelector(getState, (state) => {
     return state.page;
 });

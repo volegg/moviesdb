@@ -1,7 +1,7 @@
 import * as React from "react";
 import cn from "classnames";
 
-import { selectTotalPages } from "src/store/featureSelectors/paginationSelectors";
+import { selectHasMovies } from "src/store/featureSelectors/paginationSelectors";
 import { useSelector } from "src/store/hooks";
 import { selectPending } from "src/store/selectors/searchMovies";
 
@@ -13,9 +13,9 @@ import style from "./style.pcss";
 
 export function PageContainer() {
     const searchPending = useSelector(selectPending);
-    const totalPages = useSelector(selectTotalPages);
+    const hasMovies = useSelector(selectHasMovies);
 
-    if (totalPages < 1) {
+    if (!hasMovies) {
         return null;
     }
 
