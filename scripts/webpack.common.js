@@ -8,7 +8,15 @@ const paths = require("./paths");
 const {BundleVersionPlugin} = require("./BundleVersionPlugin");
 const {version} = require("./version");
 
-const vendor = ["@reduxjs/toolkit", "classnames", "react", "react-dom", "react-redux"];
+const vendor = [
+    "classnames",
+    "react",
+    "react-dom",
+    "@fortawesome/fontawesome-svg-core",
+    "@fortawesome/free-solid-svg-icons",
+    "@fortawesome/react-fontawesome"
+];
+const vendorRedux = ["@reduxjs/toolkit", "react-redux"];
 const isProd = process.env.NODE_ENV === "production";
 
 module.exports = {
@@ -30,6 +38,18 @@ module.exports = {
                         return vendor.some((str) => mod.context.includes(str));
                     }
                 },
+                vendorRedux: {
+                    chunks: "all",
+                    name: "vendorRedux",
+                    reuseExistingChunk: true,
+                    test: function (mod) {
+                        if (!mod.context.includes("node_modules")) {
+                            return false;
+                        }
+
+                        return vendorRedux.some((str) => mod.context.includes(str));
+                    }
+                },
                 index: {
                     chunks: "all",
                     name: "index",
@@ -39,7 +59,7 @@ module.exports = {
                             return false;
                         }
 
-                        return !vendor.some((str) => mod.context.includes(str));
+                        return !vendor.some((str) => mod.context.includes(str)) && !vendorRedux.some((str) => mod.context.includes(str))
                     }
                 }
             }

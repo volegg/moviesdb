@@ -14,9 +14,11 @@ export function render(transport: ITransport) {
 function Layout() {
     return (
         <div className={style.app}>
-            <Search />
-            <PageContainer />
-            <TopAndPopular />
+            <div>
+                <Search />
+                <PageContainer />
+                <TopAndPopular />
+            </div>
         </div>
     );
 }

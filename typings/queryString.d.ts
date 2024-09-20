@@ -6,5 +6,5 @@ type QueryParams = {
     pageSize: 4 | 5 | 10 | 20;
     sort: MovieSort;
     apiKey: string;
-    showMovie: number;
+    pageMovie: number;
 };

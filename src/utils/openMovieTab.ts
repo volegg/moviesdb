@@ -1,3 +1,3 @@
 export function openMovieTab(movieId: number) {
-    window.open("/?showMovie=" + movieId, "_blank");
+    window.open(window.location.pathname + "?pageMovie=" + movieId, "_blank");
 }

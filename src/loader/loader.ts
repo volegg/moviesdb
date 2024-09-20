@@ -30,8 +30,12 @@ function loadLayout() {
         }
     }
 
-    if (queryParam.showMovie) {
-        return import(/* webpackChunkName: "moviePage" */ "src/layout/moviePage");
+    if (queryParam.pageMovie) {
+        if (isPhone) {
+            return import(/* webpackChunkName: "pageMovieMobile" */ "src/layout/pageMovieMobile");
+        }
+
+        return import(/* webpackChunkName: "pageMovieDesktop" */ "src/layout/pageMovieDesktop");
     }
 
     switch (true) {

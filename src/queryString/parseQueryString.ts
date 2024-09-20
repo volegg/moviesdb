@@ -8,7 +8,7 @@ const defaultParams: QueryParams = {
     pageSize: PageSize.ten,
     sort: SortPerPage.none,
     apiKey: "17e3316343c81635a33bb19501cbc15b",
-    showMovie: 0,
+    pageMovie: 0,
 };
 
 export const queryParam: Readonly<QueryParams> = ((queryString) => {
@@ -27,7 +27,7 @@ export const queryParam: Readonly<QueryParams> = ((queryString) => {
     assignNumber(defaultParams, "sort", (x) => {
         return [0, 1, 2, 3].includes(x);
     });
-    assignNumber(defaultParams, "showMovie");
+    assignNumber(defaultParams, "pageMovie");
 
     const title = (urlParams.get("title") || "").trim().replace(/\s+/g, " ");
 

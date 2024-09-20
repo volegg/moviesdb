@@ -45,7 +45,7 @@ export function MovieList() {
                     const genre = genres.split(",")[0];
 
                     return (
-                        <Poster onClick={onClick} genre={genre} key={props.id} {...props} width={220} height={330} />
+                        <Poster onClick={onClick} genre={genre} key={props.id} {...props} width={11} height={16.6} />
                     );
                 })}
             </div>

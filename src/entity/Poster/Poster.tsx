@@ -11,10 +11,10 @@ type PosterProps = Omit<Movie, "lang" | "overview" | "genreIds"> & {
     onClick(id: number): void;
 };
 
-export function Poster({ onClick, id, rating, image, title, date, width = 220, height = 330, genre }: PosterProps) {
+export function Poster({ onClick, id, rating, image, title, date, width = 6, height = 10, genre }: PosterProps) {
     return (
         <div className={style.root} onClick={() => onClick(id)}>
-            <img className={style.poster} width={width} height={height} src={image} />
+            <img className={style.poster} style={{ width: width + "em", height: height + "em" }} src={image} />
             <div className={style.title}>{title}</div>
             <div className={style.bottom}>
                 <RatingItem value={rating} />

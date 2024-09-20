@@ -1,11 +1,11 @@
 import * as React from "react";
 import { createRoot } from "react-dom/client";
 
-import { MoviePage } from "src/component/MoviePage/MoviePage";
+import { MoviePage } from "src/component/MoviePageMobile/MoviePageMobile";
 import { queryParam } from "src/queryString/parseQueryString";
 import { getComputedStyle } from "src/utils/dom/computedProperty";
 
-import style from "./desktop.pcss";
+import style from "./pageMovieDesktop.pcss";
 
 export function render(transport: ITransport) {
     transport.setApiKey(queryParam.apiKey);
@@ -16,7 +16,7 @@ export function render(transport: ITransport) {
 
     const root = createRoot(rootNode);
 
-    transport.fetchMovieById(queryParam.showMovie).then((movie) => {
+    transport.fetchMovieById(queryParam.pageMovie).then((movie) => {
         root.render(
             <React.StrictMode>
                 <div className={style.app}>

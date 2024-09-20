@@ -1,0 +1,35 @@
+:root {
+    --shadow-color: #8399b5;
+    --shadow-blur: 0.15em;
+}
+
+.root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    h1, h3 {
+        color: #383838;
+        text-shadow: 0.1em 0.15em var(--shadow-blur) var(--shadow-color);
+    }
+
+    h3 {
+        margin-top: 0;
+    }
+}
+
+.poster {
+    display: block;
+    aspect-ratio: 0.666;
+    min-width: 9em;
+    width: 12em;
+    border: #000 solid 0.1em;
+    border-radius: 0.5em;
+    background-position: center center;
+    background-size: cover;
+    box-shadow: 0.2em 0.2em var(--shadow-blur) var(--shadow-color);
+    margin-right: 1em;
+    margin-bottom: 1em;
+}
+

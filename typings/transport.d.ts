@@ -65,10 +65,21 @@ type SearchMovieParams = {
     userPage?: number;
 };
 
-type ServerFullMovieDescription = {
-    id: number;
-    title: string;
-    overview: string;
+type ServerFullMovieDescription = Omit<ServerMovieProps, "genre_ids"> & {
+    budget: number;
+    genres: ServerGenreProps[];
+    homepage: string;
+    imdb_id: string;
+    tagline: string;
+    revenue: number;
+    runtime: number;
+    origin_country: string[];
+    production_companies: Array<{
+        id: number;
+        logo_path: string;
+        name: string;
+        origin_country: string;
+    }>;
 };
 
 interface ITransport {

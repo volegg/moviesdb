@@ -35,8 +35,8 @@ export function createMovieByTop(title: string, selector: (state: State) => AnyT
                                 {...item}
                                 onClick={onClick}
                                 date={toMonthYear(date)}
-                                width={110}
-                                height={165}
+                                width={6}
+                                height={9}
                             />
                         );
                     })}
