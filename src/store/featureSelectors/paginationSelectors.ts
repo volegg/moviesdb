@@ -11,6 +11,10 @@ export const selectTotalPages = createSelector(selectPageSize, selectTotalMovies
         return 0;
     }
 
+    if (totalMovies <= pageSize) {
+        return 1;
+    }
+
     return ((totalMovies / pageSize) >> 0) + 1;
 });
 
@@ -57,7 +61,7 @@ export const selectUserPages = createSelector(selectTotalPages, selectUserPage, 
 });
 
 export const selectMoviesByPage = createSelector(
-    selectUserPage,
+    selectCurrentUserPage,
     selectPageSize,
     selectSearchMovies,
     selectSortPerPage,
